@@ -1,6 +1,6 @@
 from math import *
 from random import *
-from Vector2 import Vector2
+from .Vector2 import Vector2
 
 
 class Vector3(Vector2):
@@ -22,7 +22,7 @@ class Vector3(Vector2):
         return Vector3(self.x - other.x, self.y - other.y, self.z - other.z)
 
     def __str__(self):
-        return super().__str__()[:-1]+', ' + str(self.z) + ")"
+        return super().__str__()[:-1] + ', ' + str(self.z) + ")"
 
     def __eq__(self, other):
         return self.x == other.x and self.y == other.y and self.z == other.z
@@ -60,8 +60,8 @@ class Vector3(Vector2):
         self.y = 0
         self.z = 0
 
-    def angle(self, rads): # ángulo phi util para coordenas cilíndricas y esféricas
-        if self.x==0 and self.y==0:
+    def angle(self, rads):  # ángulo phi util para coordenas cilíndricas y esféricas
+        if self.x == 0 and self.y == 0:
             return 0
         result = 0.0
         if self.x > 0:
@@ -117,112 +117,112 @@ class Vector3(Vector2):
             return -self.angleTheta(rads) + other.angleTheta(rads)
 
     def limit(self, min, max):
-        if self.x >= min.x and self.x <= max.x and self.y >= min.y and\
-            self.y <= max.y and self.z >= min.z and self.z <= max.z:
+        if self.x >= min.x and self.x <= max.x and self.y >= min.y and \
+                self.y <= max.y and self.z >= min.z and self.z <= max.z:
 
             return self
-        elif self.x < min.x and self.x <= max.x and self.y >= min.y and\
-        self.y <= max.y and self.z >= min.z and self.z <= max.z:
+        elif self.x < min.x and self.x <= max.x and self.y >= min.y and \
+                self.y <= max.y and self.z >= min.z and self.z <= max.z:
 
             return Vector3(min.x, self.y, self.z)
-        elif self.x >= min.x and self.x > max.x and self.y >= min.y and\
-            self.y <= max.y and self.z >= min.z and self.z <= max.z:
+        elif self.x >= min.x and self.x > max.x and self.y >= min.y and \
+                self.y <= max.y and self.z >= min.z and self.z <= max.z:
 
             return Vector3(max.x, self.y, self.z)
-        elif self.x >= min.x and self.x > max.x and self.y < min.y and\
-            self.y <= max.y and self.z >= min.z and self.z <= max.z:
+        elif self.x >= min.x and self.x > max.x and self.y < min.y and \
+                self.y <= max.y and self.z >= min.z and self.z <= max.z:
 
             return Vector3(max.x, min.y, self.z)
-        elif self.x >= min.x and self.x > max.x and self.y >= min.y and\
-            self.y > max.y and self.z >= min.z and self.z <= max.z:
+        elif self.x >= min.x and self.x > max.x and self.y >= min.y and \
+                self.y > max.y and self.z >= min.z and self.z <= max.z:
 
             return Vector3(max.x, max.y, self.z)
-        elif self.x < min.x and self.x <= max.x and self.y < min.y and\
-            self.y <= max.y and self.z >= min.z and self.z <= max.z:
+        elif self.x < min.x and self.x <= max.x and self.y < min.y and \
+                self.y <= max.y and self.z >= min.z and self.z <= max.z:
 
             return Vector3(min.x, min.y, self.z)
-        elif self.x < min.x and self.x <= max.x and self.y >= min.y and\
-            self.y > max.y and self.z >= min.z and self.z <= max.z:
+        elif self.x < min.x and self.x <= max.x and self.y >= min.y and \
+                self.y > max.y and self.z >= min.z and self.z <= max.z:
 
             return Vector3(min.x, max.y, self.z)
-        elif self.x >= min.x and self.x <= max.x and self.y < min.y and\
-            self.y <= max.y and self.z >= min.z and self.z <= max.z:
+        elif self.x >= min.x and self.x <= max.x and self.y < min.y and \
+                self.y <= max.y and self.z >= min.z and self.z <= max.z:
 
             return Vector3(self.x, min.y, self.z)
-        elif self.x >= min.x and self.x <= max.x and self.y >= min.y and\
-            self.y > max.y and self.z >= min.z and self.z <= max.z:
+        elif self.x >= min.x and self.x <= max.x and self.y >= min.y and \
+                self.y > max.y and self.z >= min.z and self.z <= max.z:
 
             return Vector3(self.x, max.y, self.z)
-        elif self.x >= min.x and self.x <= max.x and self.y >= min.y and\
-            self.y <= max.y and self.z < min.z and self.z <= max.z:
+        elif self.x >= min.x and self.x <= max.x and self.y >= min.y and \
+                self.y <= max.y and self.z < min.z and self.z <= max.z:
 
             return Vector3(self.x, self.y, min.z)
-        elif self.x < min.x and self.x <= max.x and self.y >= min.y and\
-            self.y <= max.y and self.z < min.z and self.z <= max.z:
+        elif self.x < min.x and self.x <= max.x and self.y >= min.y and \
+                self.y <= max.y and self.z < min.z and self.z <= max.z:
 
             return Vector3(min.x, self.y, min.z)
-        elif self.x >= min.x and self.x > max.x and self.y >= min.y and\
-            self.y <= max.y and self.z < min.z and self.z <= max.z:
+        elif self.x >= min.x and self.x > max.x and self.y >= min.y and \
+                self.y <= max.y and self.z < min.z and self.z <= max.z:
 
             return Vector3(max.x, self.y, min.z)
-        elif self.x >= min.x and self.x > max.x and self.y < min.y and\
-            self.y <= max.y and self.z < min.z and self.z <= max.z:
+        elif self.x >= min.x and self.x > max.x and self.y < min.y and \
+                self.y <= max.y and self.z < min.z and self.z <= max.z:
 
             return Vector3(max.x, min.y, min.z)
-        elif self.x >= min.x and self.x > max.x and self.y >= min.y and\
-            self.y > max.y and self.z < min.z and self.z <= max.z:
+        elif self.x >= min.x and self.x > max.x and self.y >= min.y and \
+                self.y > max.y and self.z < min.z and self.z <= max.z:
 
             return Vector3(max.x, max.y, min.z)
-        elif self.x < min.x and self.x <= max.x and self.y < min.y and\
-            self.y <= max.y and self.z < min.z and self.z <= max.z:
+        elif self.x < min.x and self.x <= max.x and self.y < min.y and \
+                self.y <= max.y and self.z < min.z and self.z <= max.z:
 
             return Vector3(min.x, min.y, min.z)
-        elif self.x < min.x and self.x <= max.x and self.y >= min.y and\
-            self.y > max.y and self.z < min.z and self.z <= max.z:
+        elif self.x < min.x and self.x <= max.x and self.y >= min.y and \
+                self.y > max.y and self.z < min.z and self.z <= max.z:
 
             return Vector3(min.x, max.y, min.z)
-        elif self.x >= min.x and self.x <= max.x and self.y < min.y and\
-            self.y <= max.y and self.z < min.z and self.z <= max.z:
+        elif self.x >= min.x and self.x <= max.x and self.y < min.y and \
+                self.y <= max.y and self.z < min.z and self.z <= max.z:
 
             return Vector3(self.x, min.y, min.z)
-        elif self.x >= min.x and self.x <= max.x and self.y >= min.y and\
-            self.y > max.y and self.z < min.z and self.z <= max.z:
+        elif self.x >= min.x and self.x <= max.x and self.y >= min.y and \
+                self.y > max.y and self.z < min.z and self.z <= max.z:
 
             return Vector3(self.x, max.y, min.z)
-        if self.x >= min.x and self.x <= max.x and self.y >= min.y and\
-            self.y <= max.y and self.z >= min.z and self.z > max.z:
+        if self.x >= min.x and self.x <= max.x and self.y >= min.y and \
+                self.y <= max.y and self.z >= min.z and self.z > max.z:
 
             return Vector3(self.x, self.y, max.z)
-        elif self.x < min.x and self.x <= max.x and self.y >= min.y and\
-            self.y <= max.y and self.z >= min.z and self.z > max.z:
+        elif self.x < min.x and self.x <= max.x and self.y >= min.y and \
+                self.y <= max.y and self.z >= min.z and self.z > max.z:
 
             return Vector3(min.x, self.y, max.z)
-        elif self.x >= min.x and self.x > max.x and self.y >= min.y and\
-            self.y <= max.y and self.z >= min.z and self.z > max.z:
+        elif self.x >= min.x and self.x > max.x and self.y >= min.y and \
+                self.y <= max.y and self.z >= min.z and self.z > max.z:
 
             return Vector3(max.x, self.y, max.z)
-        elif self.x >= min.x and self.x > max.x and self.y < min.y and\
-            self.y <= max.y and self.z >= min.z and self.z > max.z:
+        elif self.x >= min.x and self.x > max.x and self.y < min.y and \
+                self.y <= max.y and self.z >= min.z and self.z > max.z:
 
             return Vector3(max.x, min.y, max.z)
-        elif self.x >= min.x and self.x > max.x and self.y >= min.y and\
-            self.y > max.y and self.z >= min.z and self.z > max.z:
+        elif self.x >= min.x and self.x > max.x and self.y >= min.y and \
+                self.y > max.y and self.z >= min.z and self.z > max.z:
 
             return Vector3(max.x, max.y, max.z)
-        elif self.x < min.x and self.x <= max.x and self.y < min.y and\
-            self.y <= max.y and self.z >= min.z and self.z > max.z:
+        elif self.x < min.x and self.x <= max.x and self.y < min.y and \
+                self.y <= max.y and self.z >= min.z and self.z > max.z:
 
             return Vector3(min.x, min.y, max.z)
-        elif self.x < min.x and self.x <= max.x and self.y >= min.y and\
-            self.y > max.y and self.z >= min.z and self.z > max.z:
+        elif self.x < min.x and self.x <= max.x and self.y >= min.y and \
+                self.y > max.y and self.z >= min.z and self.z > max.z:
 
             return Vector3(min.x, max.y, max.z)
-        elif self.x >= min.x and self.x <= max.x and self.y < min.y and\
-            self.y <= max.y and self.z >= min.z and self.z > max.z:
+        elif self.x >= min.x and self.x <= max.x and self.y < min.y and \
+                self.y <= max.y and self.z >= min.z and self.z > max.z:
 
             return Vector3(self.x, min.y, max.z)
-        elif self.x >= min.x and self.x <= max.x and self.y >= min.y and\
-            self.y > max.y and self.z >= min.z and self.z > max.z:
+        elif self.x >= min.x and self.x <= max.x and self.y >= min.y and \
+                self.y > max.y and self.z >= min.z and self.z > max.z:
 
             return Vector3(self.x, max.y, max.z)
 
