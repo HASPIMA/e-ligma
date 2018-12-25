@@ -10,12 +10,16 @@ class Vector2:
                 self.x = copy.x
                 self.y = copy.y
             else:
-                raise TypeError('Must be a Vector2 object')
+                raise TypeError('Must be a Vector2 object not a ' + type(copy).__name__)
 
         elif xy is not None and len(xy) == 2:
             self.x, self.y = xy
         else:
-            self.x, self.y = (x, y)
+            if (type(y).__name__ == 'int' or type(y).__name__ == 'float') and \
+                    (type(x).__name__ == 'int' or type(x).__name__ == 'float'):
+                self.x, self.y = x, y
+            else:
+                raise TypeError('The parameters x and y must be an int or float object')
 
     def __iadd__(self, other):
         return Vector2(self.x + other.x, self.y + other.y)
@@ -56,9 +60,11 @@ class Vector2:
         self.y = 0
 
     def angle(self, rads):
+        result: float = 0.0
+
         if self.isZero():
-            return 0
-        result = 0.0
+            return result
+
         if self.x > 0:
             if rads:
                 result = atan(self.y / self.x)
